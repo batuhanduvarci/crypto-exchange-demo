@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">CryptoExchangeDemo</string>
+
+    <string name="fragment_coin_list_title">Coin List</string>
+
+    <string name="fragment_favorites_title">Favorites</string>
 </resources>
