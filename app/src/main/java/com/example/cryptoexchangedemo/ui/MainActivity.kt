@@ -1,7 +1,8 @@
-package com.example.cryptoexchangedemo
+package com.example.cryptoexchangedemo.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.cryptoexchangedemo.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
