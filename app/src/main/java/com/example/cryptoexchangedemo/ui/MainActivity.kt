@@ -2,11 +2,28 @@ package com.example.cryptoexchangedemo.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import com.example.cryptoexchangedemo.R
+import com.example.cryptoexchangedemo.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var bottomNavigation: BottomNavigationView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        initializeBottomNavigation()
+    }
+
+    private fun initializeBottomNavigation() {
+        bottomNavigation = findViewById(R.id.bottomNavigationView)
+        val navigationController = (supportFragmentManager.findFragmentById(R.id.fragmentContainer) as NavHostFragment).navController
+        NavigationUI.setupWithNavController(bottomNavigation, navigationController)
     }
 }
