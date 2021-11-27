@@ -4,7 +4,7 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import com.example.cryptoexchangedemo.R
 import com.example.cryptoexchangedemo.databinding.FragmentFavoritesBinding
-import com.example.cryptoexchangedemo.ui.BaseFragment
+import com.example.cryptoexchangedemo.ui.base.BaseFragment
 
 /**
  * Created by Batuhan Duvarci on 26.11.2021.
