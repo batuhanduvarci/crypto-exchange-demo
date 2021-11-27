@@ -4,11 +4,13 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import com.example.cryptoexchangedemo.R
 import com.example.cryptoexchangedemo.databinding.FragmentCoinListBinding
-import com.example.cryptoexchangedemo.ui.BaseFragment
+import com.example.cryptoexchangedemo.ui.base.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * Created by Batuhan Duvarci on 26.11.2021.
  */
+@AndroidEntryPoint
 class CoinListFragment : BaseFragment<FragmentCoinListBinding, CoinListViewModel>(R.layout.fragment_coin_list) {
 
     override val viewModel: CoinListViewModel by viewModels()
@@ -20,6 +22,8 @@ class CoinListFragment : BaseFragment<FragmentCoinListBinding, CoinListViewModel
     }
 
     override fun initObservers() {
-        //TODO("Not yet implemented")
+        viewModel.coinList.observe(viewLifecycleOwner, {
+
+        })
     }
 }

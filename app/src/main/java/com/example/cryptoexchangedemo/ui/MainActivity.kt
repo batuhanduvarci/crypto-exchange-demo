@@ -7,7 +7,9 @@ import androidx.navigation.ui.NavigationUI
 import com.example.cryptoexchangedemo.R
 import com.example.cryptoexchangedemo.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
