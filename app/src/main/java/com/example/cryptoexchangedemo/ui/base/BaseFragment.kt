@@ -1,4 +1,4 @@
-package com.example.cryptoexchangedemo.ui
+package com.example.cryptoexchangedemo.ui.base
 
 import android.os.Bundle
 import android.view.View
