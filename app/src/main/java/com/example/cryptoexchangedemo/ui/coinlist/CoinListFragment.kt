@@ -1,6 +1,7 @@
 package com.example.cryptoexchangedemo.ui.coinlist
 
 import android.view.View
+import android.widget.AdapterView
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.whenStarted
@@ -24,7 +25,30 @@ class CoinListFragment : BaseFragment<FragmentCoinListBinding, CoinListViewModel
 
     override fun initUserInterface() {
         with(binding!!){
-            adapter = CoinListAdapter()
+            coinListHeader.coinFirstSelectableSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                    adapter.firstSelectableFieldPosition = p2
+                    adapter.notifyDataSetChanged()
+                }
+
+                override fun onNothingSelected(p0: AdapterView<*>?) = Unit
+
+            }
+
+            coinListHeader.coinSecondSelectableSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                    adapter.secondSelectableFieldPosition = p2
+                    adapter.notifyDataSetChanged()
+                }
+
+                override fun onNothingSelected(p0: AdapterView<*>?) = Unit
+
+            }
+
+            coinListHeader.coinFirstSelectableSpinner.setSelection(viewModel.firstSelectable)
+            coinListHeader.coinSecondSelectableSpinner.setSelection(viewModel.secondSelectable)
+
+            adapter = CoinListAdapter(firstSelectableFieldPosition = viewModel.firstSelectable, secondSelectableFieldPosition = viewModel.secondSelectable)
             coinListRecyclerView.adapter = adapter
         }
     }
@@ -45,6 +69,14 @@ class CoinListFragment : BaseFragment<FragmentCoinListBinding, CoinListViewModel
                     }
                 }
             }
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        with(binding!!){
+            viewModel.firstSelectable = coinListHeader.coinFirstSelectableSpinner.selectedItemPosition
+            viewModel.secondSelectable = coinListHeader.coinSecondSelectableSpinner.selectedItemPosition
         }
     }
 }

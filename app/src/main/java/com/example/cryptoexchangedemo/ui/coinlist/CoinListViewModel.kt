@@ -14,6 +14,9 @@ import javax.inject.Inject
 class CoinListViewModel @Inject constructor(private val repository: CoinListRepository) :
     ViewModel() {
 
+    var firstSelectable: Int = 0
+    var secondSelectable: Int = 0
+
     private val _coinList = MutableLiveData<List<CoinModel>>()
     val coinList: MutableLiveData<List<CoinModel>> get() = _coinList
 
