@@ -9,7 +9,7 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/coinCodeHeaderTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/dimen_0"
         android:layout_height="wrap_content"
         android:text="@string/fragment_coin_list_coin_code_header_text"
         android:gravity="start"
@@ -17,11 +17,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginTop="@dimen/dimen_4"/>
+        app:layout_constraintEnd_toStartOf="@+id/coinDefinitionHeaderTextView"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/coinDefinitionHeaderTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/dimen_0"
         android:layout_height="wrap_content"
         android:text="@string/fragment_coin_list_coin_definition_header_text"
         style="@style/CEDTextStyle"
@@ -29,26 +29,32 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/coinFirstSelectableSpinner"
-        android:layout_marginTop="@dimen/dimen_4"
         android:layout_marginStart="@dimen/dimen_16"/>
 
     <Spinner
         android:id="@+id/coinFirstSelectableSpinner"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/dimen_0"
         android:layout_height="wrap_content"
-        style="@style/CEDSpinnerStyle"
+        android:theme="@style/CEDSpinnerTextStyle"
+        android:background="@null"
+        android:entries="@array/selectable_parameter_array"
         app:layout_constraintStart_toEndOf="@+id/coinDefinitionHeaderTextView"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/coinSecondSelectableSpinner"/>
+        app:layout_constraintEnd_toStartOf="@+id/coinSecondSelectableSpinner"
+        android:layout_marginStart="@dimen/dimen_16"/>
 
     <Spinner
         android:id="@+id/coinSecondSelectableSpinner"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/dimen_0"
         android:layout_height="wrap_content"
-        style="@style/CEDSpinnerStyle"
+        android:theme="@style/CEDSpinnerTextStyle"
+        android:background="@null"
+        android:entries="@array/selectable_parameter_array"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/coinFirstSelectableSpinner"
+        android:layout_marginStart="@dimen/dimen_16"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
