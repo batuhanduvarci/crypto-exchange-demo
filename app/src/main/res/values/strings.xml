@@ -4,6 +4,16 @@
     <string name="fragment_coin_list_title">Coin List</string>
     <string name="fragment_coin_list_coin_code_header_text">Code</string>
     <string name="fragment_coin_list_coin_definition_header_text">Definition</string>
+    <string-array name="selectable_parameter_array">
+        <item>Last Price</item>
+        <item>Daily Highest Price</item>
+        <item>Daily Lowest Price</item>
+        <item>Buy</item>
+        <item>Sell</item>
+        <item>Difference</item>
+        <item>Difference Percentage</item>
+        <item>Last Day Price</item>
+    </string-array>
 
     <string name="fragment_favorites_title">Favorites</string>
 </resources>
