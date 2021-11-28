@@ -23,11 +23,14 @@ abstract class BaseFragment<VB: ViewBinding, VM: ViewModel>(layoutId: Int): Frag
 
         initUserInterface()
         initObservers()
+        startCoroutine()
     }
 
     abstract fun initUserInterface()
 
     abstract fun initObservers()
+
+    abstract fun startCoroutine()
 
     override fun onDestroyView() {
         super.onDestroyView()

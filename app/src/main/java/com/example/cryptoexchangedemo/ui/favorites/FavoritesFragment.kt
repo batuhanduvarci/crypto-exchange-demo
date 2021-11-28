@@ -22,4 +22,8 @@ class FavoritesFragment : BaseFragment<FragmentFavoritesBinding, FavoritesViewMo
     override fun initObservers() {
         //TODO("Not yet implemented")
     }
+
+    override fun startCoroutine() {
+        //TODO("Not yet implemented")
+    }
 }
