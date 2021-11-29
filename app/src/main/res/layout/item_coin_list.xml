@@ -1,82 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<androidx.cardview.widget.CardView android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/custom_ripple_effect"
-    android:clickable="true"
-    android:padding="@dimen/dimen_8"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardCornerRadius="@dimen/dimen_8"
     android:layout_marginVertical="@dimen/dimen_4"
+    android:translationZ="@dimen/dimen_16"
+    android:foreground="?attr/selectableItemBackground"
+    android:clickable="true"
     tools:ignore="KeyboardInaccessibleWidget">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/coinCodeTextView"
-        android:layout_width="@dimen/dimen_0"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Coin Code"
-        android:textSize="@dimen/text_size_16"
-        android:textStyle="bold"
-        android:gravity="start"
-        style="@style/CEDTextStyle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/coinDefinitionTextView"/>
+        android:padding="@dimen/dimen_8">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/coinUpdatedTextView"
-        android:layout_width="@dimen/dimen_0"
-        android:layout_height="wrap_content"
-        tools:text="27.11.2021"
-        android:textColor="@color/ced_light_gray"
-        android:textSize="@dimen/text_size_12"
-        style="@style/CEDTextStyle"
-        app:layout_constraintStart_toStartOf="@+id/coinCodeTextView"
-        app:layout_constraintTop_toBottomOf="@+id/coinCodeTextView"
-        android:layout_marginTop="@dimen/dimen_4"/>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/coinCodeTextView"
+            android:layout_width="@dimen/dimen_0"
+            android:layout_height="wrap_content"
+            tools:text="Coin Code"
+            android:textSize="@dimen/text_size_16"
+            android:textStyle="bold"
+            android:gravity="start"
+            style="@style/CEDTextStyle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/coinDefinitionTextView"/>
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/coinDefinitionTextView"
-        android:layout_width="@dimen/dimen_0"
-        android:layout_height="wrap_content"
-        tools:text="Coin Definition"
-        android:textColor="@color/black"
-        style="@style/CEDTextStyle"
-        android:ellipsize="marquee"
-        android:marqueeRepeatLimit="marquee_forever"
-        android:singleLine="true"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        app:layout_constraintStart_toEndOf="@+id/coinCodeTextView"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/coinFirstSelectableTextView"
-        android:layout_marginStart="@dimen/dimen_16"/>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/coinUpdatedTextView"
+            android:layout_width="@dimen/dimen_0"
+            android:layout_height="wrap_content"
+            tools:text="27.11.2021"
+            android:textColor="@color/ced_light_gray"
+            android:textSize="@dimen/text_size_12"
+            style="@style/CEDTextStyle"
+            app:layout_constraintStart_toStartOf="@+id/coinCodeTextView"
+            app:layout_constraintTop_toBottomOf="@+id/coinCodeTextView"
+            android:layout_marginTop="@dimen/dimen_4"/>
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/coinFirstSelectableTextView"
-        android:layout_width="@dimen/dimen_0"
-        android:layout_height="wrap_content"
-        tools:text="First Selectable"
-        android:textColor="@color/black"
-        style="@style/CEDTextStyle"
-        app:layout_constraintStart_toEndOf="@+id/coinDefinitionTextView"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/coinSecondSelectableTextView"
-        android:layout_marginStart="@dimen/dimen_16"/>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/coinDefinitionTextView"
+            android:layout_width="@dimen/dimen_0"
+            android:layout_height="wrap_content"
+            tools:text="Coin Definition"
+            android:textColor="@color/black"
+            style="@style/CEDTextStyle"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            app:layout_constraintStart_toEndOf="@+id/coinCodeTextView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/coinFirstSelectableTextView"
+            android:layout_marginStart="@dimen/dimen_16"/>
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/coinSecondSelectableTextView"
-        android:layout_width="@dimen/dimen_0"
-        android:layout_height="wrap_content"
-        tools:text="Second Selectable"
-        android:textColor="@color/black"
-        style="@style/CEDTextStyle"
-        app:layout_constraintStart_toEndOf="@+id/coinFirstSelectableTextView"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="@dimen/dimen_16"/>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/coinFirstSelectableTextView"
+            android:layout_width="@dimen/dimen_0"
+            android:layout_height="wrap_content"
+            tools:text="First Selectable"
+            android:textColor="@color/black"
+            style="@style/CEDTextStyle"
+            app:layout_constraintStart_toEndOf="@+id/coinDefinitionTextView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/coinSecondSelectableTextView"
+            android:layout_marginStart="@dimen/dimen_16"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/coinSecondSelectableTextView"
+            android:layout_width="@dimen/dimen_0"
+            android:layout_height="wrap_content"
+            tools:text="Second Selectable"
+            android:textColor="@color/black"
+            style="@style/CEDTextStyle"
+            app:layout_constraintStart_toEndOf="@+id/coinFirstSelectableTextView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="@dimen/dimen_16"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

@@ -8,14 +8,19 @@ import androidx.lifecycle.whenStarted
 import com.example.cryptoexchangedemo.R
 import com.example.cryptoexchangedemo.databinding.FragmentCoinListBinding
 import com.example.cryptoexchangedemo.ui.base.BaseFragment
+import com.example.cryptoexchangedemo.ui.util.RecyclerViewItemChangeAnimation
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
 
 /**
  * Created by Batuhan Duvarci on 26.11.2021.
  */
 @AndroidEntryPoint
-class CoinListFragment : BaseFragment<FragmentCoinListBinding, CoinListViewModel>(R.layout.fragment_coin_list) {
+class CoinListFragment :
+    BaseFragment<FragmentCoinListBinding, CoinListViewModel>(R.layout.fragment_coin_list) {
 
     override val viewModel: CoinListViewModel by activityViewModels()
 
@@ -24,32 +29,38 @@ class CoinListFragment : BaseFragment<FragmentCoinListBinding, CoinListViewModel
     override fun bind(view: View) = FragmentCoinListBinding.bind(view)
 
     override fun initUserInterface() {
-        with(binding!!){
-            coinListHeader.coinFirstSelectableSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                    adapter.firstSelectableFieldPosition = p2
-                    adapter.notifyDataSetChanged()
+        with(binding!!) {
+            coinListHeader.coinFirstSelectableSpinner.onItemSelectedListener =
+                object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                        adapter.firstSelectableFieldPosition = p2
+                        adapter.notifyDataSetChanged()
+                    }
+
+                    override fun onNothingSelected(p0: AdapterView<*>?) = Unit
+
                 }
 
-                override fun onNothingSelected(p0: AdapterView<*>?) = Unit
+            coinListHeader.coinSecondSelectableSpinner.onItemSelectedListener =
+                object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                        adapter.secondSelectableFieldPosition = p2
+                        adapter.notifyDataSetChanged()
+                    }
 
-            }
+                    override fun onNothingSelected(p0: AdapterView<*>?) = Unit
 
-            coinListHeader.coinSecondSelectableSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                    adapter.secondSelectableFieldPosition = p2
-                    adapter.notifyDataSetChanged()
                 }
-
-                override fun onNothingSelected(p0: AdapterView<*>?) = Unit
-
-            }
 
             coinListHeader.coinFirstSelectableSpinner.setSelection(viewModel.firstSelectable)
             coinListHeader.coinSecondSelectableSpinner.setSelection(viewModel.secondSelectable)
 
-            adapter = CoinListAdapter(firstSelectableFieldPosition = viewModel.firstSelectable, secondSelectableFieldPosition = viewModel.secondSelectable)
+            adapter = CoinListAdapter(
+                firstSelectableFieldPosition = viewModel.firstSelectable,
+                secondSelectableFieldPosition = viewModel.secondSelectable
+            )
             coinListRecyclerView.adapter = adapter
+            coinListRecyclerView.itemAnimator = RecyclerViewItemChangeAnimation()
         }
     }
 
@@ -59,11 +70,11 @@ class CoinListFragment : BaseFragment<FragmentCoinListBinding, CoinListViewModel
         })
     }
 
-    override fun startCoroutine(){
-        with(viewLifecycleOwner){
+    override fun startCoroutine() {
+        with(viewLifecycleOwner) {
             lifecycleScope.launch(Dispatchers.IO) {
                 whenStarted {
-                    while (isActive){
+                    while (isActive) {
                         viewModel.getCoinList()
                         delay(2000)
                     }
@@ -74,9 +85,11 @@ class CoinListFragment : BaseFragment<FragmentCoinListBinding, CoinListViewModel
 
     override fun onPause() {
         super.onPause()
-        with(binding!!){
-            viewModel.firstSelectable = coinListHeader.coinFirstSelectableSpinner.selectedItemPosition
-            viewModel.secondSelectable = coinListHeader.coinSecondSelectableSpinner.selectedItemPosition
+        with(binding!!) {
+            viewModel.firstSelectable =
+                coinListHeader.coinFirstSelectableSpinner.selectedItemPosition
+            viewModel.secondSelectable =
+                coinListHeader.coinSecondSelectableSpinner.selectedItemPosition
         }
     }
 }
