@@ -11,4 +11,6 @@
     <color name="ced_blue">#3498DB</color>
     <color name="ced_light_blue">#5DADE2</color>
     <color name="ced_light_gray">#B3B6B7</color>
+    <color name="ced_green">#229954</color>
+    <color name="ced_red">#CB4335</color>
 </resources>
