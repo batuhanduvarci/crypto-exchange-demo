@@ -12,7 +12,6 @@
         android:layout_width="@dimen/dimen_0"
         android:layout_height="wrap_content"
         android:text="@string/fragment_coin_list_coin_code_header_text"
-        android:gravity="start"
         style="@style/CEDTextStyle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

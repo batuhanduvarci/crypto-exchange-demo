@@ -3,9 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/ced_light_gray"
-    android:paddingHorizontal="@dimen/dimen_4">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <include layout="@layout/item_coin_list_header"
         android:id="@+id/coinListHeader"
@@ -19,6 +17,8 @@
         android:id="@+id/coinListRecyclerView"
         android:layout_width="@dimen/dimen_0"
         android:layout_height="@dimen/dimen_0"
+        android:paddingHorizontal="@dimen/dimen_4"
+        android:clipToPadding="false"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/coinListHeader"
