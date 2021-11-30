@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CryptoExchangeDemo</string>
+    <string name="app_name">Crypto Exchange Demo</string>
 
     <string name="fragment_coin_list_title">Coin List</string>
     <string name="fragment_coin_list_coin_code_header_text">Code</string>
