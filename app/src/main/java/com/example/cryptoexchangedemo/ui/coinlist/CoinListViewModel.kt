@@ -4,16 +4,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.cryptoexchangedemo.domain.models.CoinModel
 import com.example.cryptoexchangedemo.network.handler.NetworkResult
-import com.example.cryptoexchangedemo.repository.coinlist.CoinListRepository
+import com.example.cryptoexchangedemo.repository.coinlist.CoinListRemoteRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import java.lang.Exception
 import javax.inject.Inject
 
 /**
  * Created by Batuhan Duvarci on 26.11.2021.
  */
 @HiltViewModel
-class CoinListViewModel @Inject constructor(private val repository: CoinListRepository) :
+class CoinListViewModel @Inject constructor(private val remoteRepository: CoinListRemoteRepository) :
     ViewModel() {
 
     var firstSelectable: Int = 0
@@ -24,7 +23,7 @@ class CoinListViewModel @Inject constructor(private val repository: CoinListRepo
 
     suspend fun getCoinList(){
         try {
-            val response = repository.getCoinList()
+            val response = remoteRepository.getCoinList()
             if (response.isEmpty()){
                 _coinList.postValue(NetworkResult.Error("Error"))
             }else{

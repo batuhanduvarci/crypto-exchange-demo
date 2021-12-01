@@ -2,8 +2,8 @@ package com.example.cryptoexchangedemo.di
 
 import com.example.cryptoexchangedemo.network.CEDService
 import com.example.cryptoexchangedemo.network.mapper.CoinListResponseMapper
-import com.example.cryptoexchangedemo.repository.coinlist.CoinListRepository
-import com.example.cryptoexchangedemo.repository.coinlist.CoinListRepositoryImpl
+import com.example.cryptoexchangedemo.repository.coinlist.CoinListRemoteRepository
+import com.example.cryptoexchangedemo.repository.coinlist.CoinListRemoteRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,8 +22,8 @@ object RepositoryModule {
     fun coinListRepositoryProvider(
         cedService: CEDService,
         coinListResponseMapper: CoinListResponseMapper
-    ): CoinListRepository{
-        return CoinListRepositoryImpl(
+    ): CoinListRemoteRepository{
+        return CoinListRemoteRepositoryImpl(
             cedService,
             coinListResponseMapper
         )

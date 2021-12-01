@@ -1,6 +1,7 @@
 package com.example.cryptoexchangedemo.di
 
 import com.example.cryptoexchangedemo.network.CEDService
+import com.example.cryptoexchangedemo.network.mapper.CoinDetailResponseMapper
 import com.example.cryptoexchangedemo.network.mapper.CoinListResponseMapper
 import dagger.Module
 import dagger.Provides
@@ -25,5 +26,11 @@ object NetworkModule {
     @Provides
     fun coinListResponseMapperProvider(): CoinListResponseMapper{
         return CoinListResponseMapper()
+    }
+
+    @Singleton
+    @Provides
+    fun coinDetailResponseMapperProvider(): CoinDetailResponseMapper{
+        return CoinDetailResponseMapper()
     }
 }
