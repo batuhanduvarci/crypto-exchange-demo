@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <include layout="@layout/toolbar"
+        android:id="@+id/toolbar"
+        android:layout_width="@dimen/dimen_0"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/lastTextView"
+        android:layout_width="@dimen/dimen_0"
+        android:layout_height="wrap_content"
+        tools:text="Last"
+        style="@style/CEDTextStyle"
+        android:gravity="start"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/dimen_16"
+        android:layout_marginHorizontal="@dimen/dimen_8"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/buyTextView"
+        android:layout_width="@dimen/dimen_0"
+        android:layout_height="wrap_content"
+        tools:text="Buy"
+        style="@style/CEDTextStyle"
+        android:gravity="start"
+        app:layout_constraintTop_toBottomOf="@+id/lastTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/dimen_16"
+        android:layout_marginHorizontal="@dimen/dimen_8"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/sellTextView"
+        android:layout_width="@dimen/dimen_0"
+        android:layout_height="wrap_content"
+        tools:text="Sell"
+        style="@style/CEDTextStyle"
+        android:gravity="start"
+        app:layout_constraintTop_toBottomOf="@+id/buyTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/dimen_16"
+        android:layout_marginHorizontal="@dimen/dimen_8"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/lowTextView"
+        android:layout_width="@dimen/dimen_0"
+        android:layout_height="wrap_content"
+        tools:text="Low"
+        style="@style/CEDTextStyle"
+        android:gravity="start"
+        app:layout_constraintTop_toBottomOf="@+id/sellTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/dimen_16"
+        android:layout_marginHorizontal="@dimen/dimen_8"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/highTextView"
+        android:layout_width="@dimen/dimen_0"
+        android:layout_height="wrap_content"
+        tools:text="High"
+        style="@style/CEDTextStyle"
+        android:gravity="start"
+        app:layout_constraintTop_toBottomOf="@+id/lowTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/dimen_16"
+        android:layout_marginHorizontal="@dimen/dimen_8"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/differenceTextView"
+        android:layout_width="@dimen/dimen_0"
+        android:layout_height="wrap_content"
+        tools:text="Difference"
+        style="@style/CEDTextStyle"
+        android:gravity="start"
+        app:layout_constraintTop_toBottomOf="@+id/highTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/dimen_16"
+        android:layout_marginHorizontal="@dimen/dimen_8"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/differencePercentageTextView"
+        android:layout_width="@dimen/dimen_0"
+        android:layout_height="wrap_content"
+        tools:text="Difference Percentage"
+        style="@style/CEDTextStyle"
+        android:gravity="start"
+        app:layout_constraintTop_toBottomOf="@+id/differenceTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/dimen_16"
+        android:layout_marginHorizontal="@dimen/dimen_8"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
