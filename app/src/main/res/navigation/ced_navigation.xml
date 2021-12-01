@@ -9,12 +9,22 @@
         android:name="com.example.cryptoexchangedemo.ui.coinlist.CoinListFragment"
         tools:layout="@layout/fragment_coin_list">
 
+        <action android:id="@+id/toFragmentCoinDetail"
+            app:destination="@id/fragmentCoinDetail"/>
     </fragment>
 
     <fragment android:id="@+id/fragmentFavorites"
         android:name="com.example.cryptoexchangedemo.ui.favorites.FavoritesFragment"
-        tools:layout="@layout/fragment_favorites">
+        tools:layout="@layout/fragment_coin_list">
 
+    </fragment>
+
+    <fragment android:id="@+id/fragmentCoinDetail"
+        android:name="com.example.cryptoexchangedemo.ui.coindetail.CoinDetailFragment"
+        tools:layout="@layout/fragment_coin_detail">
+        <argument android:name="coinId"
+            app:argType="string"
+            app:nullable="false"/>
     </fragment>
 
 </navigation>

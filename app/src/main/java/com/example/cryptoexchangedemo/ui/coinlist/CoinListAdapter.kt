@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.DiffUtil
 import com.example.cryptoexchangedemo.R
 import com.example.cryptoexchangedemo.databinding.ItemCoinListBinding
 import com.example.cryptoexchangedemo.domain.models.CoinModel
+import com.example.cryptoexchangedemo.ui.OnItemClickCallback
 import com.example.cryptoexchangedemo.ui.base.CEDBaseListAdapter
 import com.example.cryptoexchangedemo.ui.util.AnimationEnum
 import com.google.android.material.textview.MaterialTextView
@@ -14,9 +15,14 @@ import com.google.android.material.textview.MaterialTextView
  */
 class CoinListAdapter(
     diffUtil: DiffUtil.ItemCallback<CoinModel> = CoinDiffCallback(),
+    onItemClickCallback: OnItemClickCallback<CoinModel>,
     var firstSelectableFieldPosition: Int,
     var secondSelectableFieldPosition: Int
-) : CEDBaseListAdapter<CoinModel>(R.layout.item_coin_list, diffUtilCallback = diffUtil) {
+) : CEDBaseListAdapter<CoinModel>(
+    R.layout.item_coin_list,
+    diffUtilCallback = diffUtil,
+    onItemClickCallback = onItemClickCallback
+) {
 
     override fun bind(itemView: View, item: CoinModel, position: Int, viewHolder: ViewHolderImpl) {
         val binding = ItemCoinListBinding.bind(itemView)

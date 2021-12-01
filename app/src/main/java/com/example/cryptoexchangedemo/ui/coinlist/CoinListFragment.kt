@@ -6,10 +6,13 @@ import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.whenStarted
+import androidx.navigation.fragment.findNavController
 import com.example.cryptoexchangedemo.R
 import com.example.cryptoexchangedemo.constants.ApplicationConstants
 import com.example.cryptoexchangedemo.databinding.FragmentCoinListBinding
+import com.example.cryptoexchangedemo.domain.models.CoinModel
 import com.example.cryptoexchangedemo.network.handler.NetworkResult
+import com.example.cryptoexchangedemo.ui.OnItemClickCallback
 import com.example.cryptoexchangedemo.ui.base.BaseFragment
 import com.example.cryptoexchangedemo.ui.components.extensions.hideLoading
 import com.example.cryptoexchangedemo.ui.components.extensions.showLoading
@@ -61,6 +64,17 @@ class CoinListFragment :
             coinListHeader.coinSecondSelectableSpinner.setSelection(viewModel.secondSelectable)
 
             adapter = CoinListAdapter(
+                onItemClickCallback = object : OnItemClickCallback<CoinModel> {
+                    override fun onItemClick(item: CoinModel) {
+                        item.id?.let {
+                            findNavController().navigate(
+                                CoinListFragmentDirections.toFragmentCoinDetail(
+                                    it
+                                )
+                            )
+                        }
+                    }
+                },
                 firstSelectableFieldPosition = viewModel.firstSelectable,
                 secondSelectableFieldPosition = viewModel.secondSelectable
             )
