@@ -1,6 +1,7 @@
 package com.example.cryptoexchangedemo.di
 
 import com.example.cryptoexchangedemo.network.CEDService
+import com.example.cryptoexchangedemo.network.mapper.CoinDetailResponseMapper
 import com.example.cryptoexchangedemo.network.mapper.CoinListResponseMapper
 import com.example.cryptoexchangedemo.repository.coinlist.CoinListRemoteRepository
 import com.example.cryptoexchangedemo.repository.coinlist.CoinListRemoteRepositoryImpl
@@ -19,13 +20,15 @@ object RepositoryModule {
 
     @Singleton
     @Provides
-    fun coinListRepositoryProvider(
+    fun coinRepositoryProvider(
         cedService: CEDService,
-        coinListResponseMapper: CoinListResponseMapper
-    ): CoinListRemoteRepository{
+        coinListResponseMapper: CoinListResponseMapper,
+        coinDetailResponseMapper: CoinDetailResponseMapper
+    ): CoinListRemoteRepository {
         return CoinListRemoteRepositoryImpl(
             cedService,
-            coinListResponseMapper
+            coinListResponseMapper,
+            coinDetailResponseMapper
         )
     }
 }

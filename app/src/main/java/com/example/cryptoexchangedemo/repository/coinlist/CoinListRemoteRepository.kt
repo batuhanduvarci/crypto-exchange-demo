@@ -10,5 +10,5 @@ interface CoinListRemoteRepository {
 
     suspend fun getCoinList(): List<CoinModel>
 
-    suspend fun getCoin(coinId: String): CoinDetailModel
+    suspend fun getCoin(coinId: String): CoinDetailModel?
 }

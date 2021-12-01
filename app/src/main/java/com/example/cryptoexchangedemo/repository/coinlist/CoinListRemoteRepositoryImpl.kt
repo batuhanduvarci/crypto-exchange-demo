@@ -20,7 +20,7 @@ class CoinListRemoteRepositoryImpl @Inject constructor(
         return listResponseMapper.fromEntityList(cedService.getCoinList().coinList)
     }
 
-    override suspend fun getCoin(coinId: String): CoinDetailModel {
+    override suspend fun getCoin(coinId: String): CoinDetailModel? {
         return detailResponseMapper.mapToDomainModel(cedService.getCoin(coinId))
     }
 }
