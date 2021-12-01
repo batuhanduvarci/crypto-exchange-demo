@@ -7,5 +7,4 @@ import dagger.hilt.android.HiltAndroidApp
  * Created by Batuhan Duvarci on 26.11.2021.
  */
 @HiltAndroidApp
-class CEDApplication : Application() {
-}
+class CEDApplication : Application()

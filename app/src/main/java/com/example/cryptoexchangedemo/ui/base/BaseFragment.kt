@@ -9,13 +9,13 @@ import androidx.viewbinding.ViewBinding
 /**
  * Created by Batuhan Duvarci on 26.11.2021.
  */
-abstract class BaseFragment<VB: ViewBinding, VM: ViewModel>(layoutId: Int): Fragment(layoutId) {
+abstract class BaseFragment<VB : ViewBinding, VM : ViewModel>(layoutId: Int) : Fragment(layoutId) {
 
     abstract val viewModel: VM
 
     open var binding: VB? = null
 
-    abstract fun bind(view: View) : VB
+    abstract fun bind(view: View): VB
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
