@@ -1,10 +1,13 @@
 package com.example.cryptoexchangedemo.di
 
+import com.example.cryptoexchangedemo.database.FavoritesDao
 import com.example.cryptoexchangedemo.network.CEDService
 import com.example.cryptoexchangedemo.network.mapper.CoinDetailResponseMapper
 import com.example.cryptoexchangedemo.network.mapper.CoinListResponseMapper
 import com.example.cryptoexchangedemo.repository.coinlist.CoinListRemoteRepository
 import com.example.cryptoexchangedemo.repository.coinlist.CoinListRemoteRepositoryImpl
+import com.example.cryptoexchangedemo.repository.favorites.CoinListLocaleRepository
+import com.example.cryptoexchangedemo.repository.favorites.CoinListLocaleRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,7 +23,7 @@ object RepositoryModule {
 
     @Singleton
     @Provides
-    fun coinRepositoryProvider(
+    fun coinRemoteRepositoryProvider(
         cedService: CEDService,
         coinListResponseMapper: CoinListResponseMapper,
         coinDetailResponseMapper: CoinDetailResponseMapper
@@ -29,6 +32,16 @@ object RepositoryModule {
             cedService,
             coinListResponseMapper,
             coinDetailResponseMapper
+        )
+    }
+
+    @Singleton
+    @Provides
+    fun coinLocaleRepositoryProvider(
+        favoritesDao: FavoritesDao
+    ): CoinListLocaleRepository {
+        return CoinListLocaleRepositoryImpl(
+            favoritesDao
         )
     }
 }
