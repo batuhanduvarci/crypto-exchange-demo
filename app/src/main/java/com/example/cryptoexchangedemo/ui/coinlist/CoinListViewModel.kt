@@ -21,15 +21,15 @@ class CoinListViewModel @Inject constructor(private val remoteRepository: CoinLi
     private val _coinList = MutableLiveData<NetworkResult<List<CoinModel>>>(NetworkResult.Loading())
     val coinList: MutableLiveData<NetworkResult<List<CoinModel>>> get() = _coinList
 
-    suspend fun getCoinList(){
+    suspend fun getCoinList() {
         try {
             val response = remoteRepository.getCoinList()
-            if (response.isEmpty()){
+            if (response.isEmpty()) {
                 _coinList.postValue(NetworkResult.Error("Error"))
             }else{
                 _coinList.postValue(NetworkResult.Success(response))
             }
-        }catch (ex: Exception){
+        } catch (ex: Exception) {
             _coinList.postValue(NetworkResult.Error(ex.message))
         }
 
