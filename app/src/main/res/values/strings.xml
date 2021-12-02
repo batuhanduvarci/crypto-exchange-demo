@@ -16,4 +16,11 @@
     </string-array>
 
     <string name="fragment_favorites_title">Favorites</string>
+
+    <string name="fragment_coin_details_add_to_favorites_success_text">The coin is added to favorites successfully</string>
+    <string name="fragment_coin_details_add_to_favorites_error_text">An error occurred while adding the coin to favorites!</string>
+    <string name="fragment_coin_details_remove_from_favorites_success_text">The coin is removed from favorites successfully</string>
+    <string name="fragment_coin_details_remove_from_favorites_error_text">An error occurred while removing the coin from favorites!</string>
+
+    <string name="generic_network_error_text">Network Error!</string>
 </resources>
