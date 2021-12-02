@@ -2,9 +2,12 @@ package com.example.cryptoexchangedemo.ui.coindetail
 
 import android.view.View
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.whenStarted
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.cryptoexchangedemo.R
 import com.example.cryptoexchangedemo.constants.ApplicationConstants
@@ -27,11 +30,15 @@ import kotlinx.coroutines.launch
 class CoinDetailFragment :
     BaseFragment<FragmentCoinDetailBinding, CoinDetailViewModel>(R.layout.fragment_coin_detail) {
 
-    override val viewModel: CoinDetailViewModel by activityViewModels()
+    override val viewModel: CoinDetailViewModel by viewModels()
 
     private val navArgs: CoinDetailFragmentArgs by navArgs()
-
     private var coinDetailModel: CoinDetailModel? = null
+    override var onBackPressedCallback: OnBackPressedCallback? = object :OnBackPressedCallback(true){
+        override fun handleOnBackPressed() {
+            findNavController().navigate(CoinDetailFragmentDirections.toFragmentCoinList())
+        }
+    }
 
     override fun bind(view: View) = FragmentCoinDetailBinding.bind(view)
 
@@ -39,13 +46,24 @@ class CoinDetailFragment :
         with(binding!!) {
             toolbar.titleTextView.text = navArgs.coinId
             coinDetailModel?.let {
-                lastTextView.text = it.las
-                buyTextView.text = it.buy
-                sellTextView.text = it.sel
-                lowTextView.text = it.low
-                highTextView.text = it.hig
-                differenceTextView.text = it.ddi
-                differencePercentageTextView.text = it.pdd
+                val titleArray = resources.getStringArray(R.array.selectable_parameter_array)
+                lastContainer.titleTextView.text = titleArray[0]
+                lastContainer.informationTextView.text = it.las
+                buyContainer.titleTextView.text = titleArray[3]
+                buyContainer.informationTextView.text = it.buy
+                sellContainer.titleTextView.text = titleArray[4]
+                sellContainer.informationTextView.text = it.sel
+                lowContainer.titleTextView.text = titleArray[1]
+                lowContainer.informationTextView.text = it.low
+                highContainer.titleTextView.text = titleArray[2]
+                highContainer.informationTextView.text = it.hig
+                differenceContainer.titleTextView.text = titleArray[5]
+                differenceContainer.informationTextView.text = it.ddi
+                differencePercentageContainer.titleTextView.text = titleArray[6]
+                differencePercentageContainer.informationTextView.text = it.pdd
+            }
+            toolbar.backImageButton.setOnClickListener {
+                findNavController().navigate(CoinDetailFragmentDirections.toFragmentCoinList())
             }
         }
     }

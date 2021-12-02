@@ -1,7 +1,9 @@
 package com.example.cryptoexchangedemo.ui.base
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
@@ -14,6 +16,7 @@ abstract class BaseFragment<VB : ViewBinding, VM : ViewModel>(layoutId: Int) : F
     abstract val viewModel: VM
 
     open var binding: VB? = null
+    open var onBackPressedCallback: OnBackPressedCallback? = null
 
     abstract fun bind(view: View): VB
 
@@ -24,6 +27,13 @@ abstract class BaseFragment<VB : ViewBinding, VM : ViewModel>(layoutId: Int) : F
         initUserInterface()
         initObservers()
         startCoroutine()
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        onBackPressedCallback?.let {
+            requireActivity().onBackPressedDispatcher.addCallback(this, it)
+        }
     }
 
     abstract fun initUserInterface()

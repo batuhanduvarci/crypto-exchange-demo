@@ -25,6 +25,10 @@
         <argument android:name="coinId"
             app:argType="string"
             app:nullable="false"/>
+        <action android:id="@+id/toFragmentCoinList"
+            app:destination="@id/fragmentCoinList"
+            app:popUpTo="@id/fragmentCoinList"
+            app:popUpToInclusive="true"/>
     </fragment>
 
 </navigation>

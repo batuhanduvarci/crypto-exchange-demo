@@ -13,95 +13,77 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/lastTextView"
+    <include layout="@layout/item_coin_detail"
+        android:id="@+id/lastContainer"
         android:layout_width="@dimen/dimen_0"
         android:layout_height="wrap_content"
-        tools:text="Last"
-        style="@style/CEDTextStyle"
-        android:gravity="start"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="@dimen/dimen_16"
-        android:layout_marginHorizontal="@dimen/dimen_8"/>
+        app:layout_constraintEnd_toStartOf="@+id/buyContainer"
+        android:layout_margin="@dimen/dimen_4"
+        />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/buyTextView"
+    <include layout="@layout/item_coin_detail"
+        android:id="@+id/buyContainer"
         android:layout_width="@dimen/dimen_0"
         android:layout_height="wrap_content"
-        tools:text="Buy"
-        style="@style/CEDTextStyle"
-        android:gravity="start"
-        app:layout_constraintTop_toBottomOf="@+id/lastTextView"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/lastContainer"
+        app:layout_constraintStart_toEndOf="@id/lastContainer"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="@dimen/dimen_16"
-        android:layout_marginHorizontal="@dimen/dimen_8"/>
+        app:layout_constraintBottom_toBottomOf="@+id/lastContainer"
+        android:layout_margin="@dimen/dimen_4"
+        />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/sellTextView"
+    <include layout="@layout/item_coin_detail"
+        android:id="@+id/sellContainer"
         android:layout_width="@dimen/dimen_0"
         android:layout_height="wrap_content"
-        tools:text="Sell"
-        style="@style/CEDTextStyle"
-        android:gravity="start"
-        app:layout_constraintTop_toBottomOf="@+id/buyTextView"
+        app:layout_constraintTop_toBottomOf="@+id/lastContainer"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="@dimen/dimen_16"
-        android:layout_marginHorizontal="@dimen/dimen_8"/>
+        app:layout_constraintEnd_toStartOf="@+id/lowContainer"
+        android:layout_margin="@dimen/dimen_4"
+        />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/lowTextView"
+    <include layout="@layout/item_coin_detail"
+        android:id="@+id/lowContainer"
         android:layout_width="@dimen/dimen_0"
         android:layout_height="wrap_content"
-        tools:text="Low"
-        style="@style/CEDTextStyle"
-        android:gravity="start"
-        app:layout_constraintTop_toBottomOf="@+id/sellTextView"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/sellContainer"
+        app:layout_constraintStart_toEndOf="@id/sellContainer"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="@dimen/dimen_16"
-        android:layout_marginHorizontal="@dimen/dimen_8"/>
+        app:layout_constraintBottom_toBottomOf="@+id/sellContainer"
+        android:layout_margin="@dimen/dimen_4"
+        />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/highTextView"
+    <include layout="@layout/item_coin_detail"
+        android:id="@+id/highContainer"
         android:layout_width="@dimen/dimen_0"
         android:layout_height="wrap_content"
-        tools:text="High"
-        style="@style/CEDTextStyle"
-        android:gravity="start"
-        app:layout_constraintTop_toBottomOf="@+id/lowTextView"
+        app:layout_constraintTop_toBottomOf="@+id/sellContainer"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="@dimen/dimen_16"
-        android:layout_marginHorizontal="@dimen/dimen_8"/>
+        app:layout_constraintEnd_toStartOf="@+id/differenceContainer"
+        android:layout_margin="@dimen/dimen_4"
+        />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/differenceTextView"
+    <include layout="@layout/item_coin_detail"
+        android:id="@+id/differenceContainer"
         android:layout_width="@dimen/dimen_0"
         android:layout_height="wrap_content"
-        tools:text="Difference"
-        style="@style/CEDTextStyle"
-        android:gravity="start"
-        app:layout_constraintTop_toBottomOf="@+id/highTextView"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/highContainer"
+        app:layout_constraintStart_toEndOf="@id/highContainer"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="@dimen/dimen_16"
-        android:layout_marginHorizontal="@dimen/dimen_8"/>
+        app:layout_constraintBottom_toBottomOf="@+id/highContainer"
+        android:layout_margin="@dimen/dimen_4"
+        />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/differencePercentageTextView"
+    <include layout="@layout/item_coin_detail"
+        android:id="@+id/differencePercentageContainer"
         android:layout_width="@dimen/dimen_0"
         android:layout_height="wrap_content"
-        tools:text="Difference Percentage"
-        style="@style/CEDTextStyle"
-        android:gravity="start"
-        app:layout_constraintTop_toBottomOf="@+id/differenceTextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="@dimen/dimen_16"
-        android:layout_marginHorizontal="@dimen/dimen_8"/>
+        app:layout_constraintTop_toBottomOf="@+id/highContainer"
+        app:layout_constraintStart_toStartOf="@id/highContainer"
+        app:layout_constraintEnd_toEndOf="@id/differenceContainer"
+        android:layout_marginVertical="@dimen/dimen_4"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

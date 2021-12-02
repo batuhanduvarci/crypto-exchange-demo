@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/background_item_coin_list"
+    android:padding="@dimen/dimen_4"
+    android:translationZ="@dimen/dimen_16"
+    android:orientation="vertical">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/titleTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Title"
+        style="@style/CEDTitleTextStyle"
+        android:textSize="@dimen/text_size_16"
+        android:textColor="@color/black"
+        android:gravity="center"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/informationTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Information"
+        style="@style/CEDTextStyle"
+        android:layout_marginTop="@dimen/dimen_4"/>
+</LinearLayout>
