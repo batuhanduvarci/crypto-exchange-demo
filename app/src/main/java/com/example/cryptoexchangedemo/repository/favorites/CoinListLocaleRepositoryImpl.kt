@@ -18,8 +18,8 @@ class CoinListLocaleRepositoryImpl @Inject constructor(private val favoritesDao:
         favoritesDao.add(CoinEntityModel(coinId))
     }
 
-    override suspend fun removeCoinId(coin: CoinEntityModel) {
-        favoritesDao.delete(coin)
+    override suspend fun removeCoinId(coinId: String) {
+        favoritesDao.delete(CoinEntityModel(coinId))
     }
 
 }

@@ -12,5 +12,5 @@ interface CoinListLocaleRepository {
 
     suspend fun insertCoinId(coinId: String)
 
-    suspend fun removeCoinId(coin: CoinEntityModel)
+    suspend fun removeCoinId(coinId: String)
 }
