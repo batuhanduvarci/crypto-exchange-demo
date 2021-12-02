@@ -11,9 +11,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.cryptoexchangedemo.R
 import com.example.cryptoexchangedemo.constants.ApplicationConstants
+import com.example.cryptoexchangedemo.database.handler.DatabaseResult
 import com.example.cryptoexchangedemo.databinding.FragmentCoinDetailBinding
 import com.example.cryptoexchangedemo.domain.models.CoinDetailModel
+import com.example.cryptoexchangedemo.domain.models.CoinEntityModel
 import com.example.cryptoexchangedemo.network.handler.NetworkResult
+import com.example.cryptoexchangedemo.ui.SharedViewModel
 import com.example.cryptoexchangedemo.ui.base.BaseFragment
 import com.example.cryptoexchangedemo.ui.components.extensions.hideLoading
 import com.example.cryptoexchangedemo.ui.components.extensions.showLoading
@@ -32,19 +35,23 @@ class CoinDetailFragment :
 
     override val viewModel: CoinDetailViewModel by viewModels()
 
+    private val sharedViewModel: SharedViewModel by activityViewModels()
+
     private val navArgs: CoinDetailFragmentArgs by navArgs()
     private var coinDetailModel: CoinDetailModel? = null
-    override var onBackPressedCallback: OnBackPressedCallback? = object :OnBackPressedCallback(true){
-        override fun handleOnBackPressed() {
-            findNavController().navigate(CoinDetailFragmentDirections.toFragmentCoinList())
+    override var onBackPressedCallback: OnBackPressedCallback? =
+        object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().navigate(CoinDetailFragmentDirections.toFragmentCoinList())
+            }
         }
-    }
 
     override fun bind(view: View) = FragmentCoinDetailBinding.bind(view)
 
     override fun initUserInterface() {
         with(binding!!) {
             toolbar.titleTextView.text = navArgs.coinId
+            updateFavoriteIcon()
             coinDetailModel?.let {
                 val titleArray = resources.getStringArray(R.array.selectable_parameter_array)
                 lastContainer.titleTextView.text = titleArray[0]
@@ -65,6 +72,16 @@ class CoinDetailFragment :
             toolbar.backImageButton.setOnClickListener {
                 findNavController().navigate(CoinDetailFragmentDirections.toFragmentCoinList())
             }
+
+            toolbar.favoriteImageButton.setOnClickListener {
+                with(navArgs.coinId) {
+                    if (sharedViewModel.favoriteCoinList.contains(CoinEntityModel(navArgs.coinId))) {
+                        viewModel.removeFromFavorites(this)
+                        return@setOnClickListener
+                    }
+                    viewModel.addToFavorites(navArgs.coinId)
+                }
+            }
         }
     }
 
@@ -72,12 +89,27 @@ class CoinDetailFragment :
         viewModel.coin.observe(viewLifecycleOwner) {
             when (it) {
                 is NetworkResult.Success -> {
-                    coinDetailModel = it.data
                     hideLoading()
+                    coinDetailModel = it.data
                     initUserInterface()
                 }
                 is NetworkResult.Loading -> showLoading()
                 is NetworkResult.Error -> {
+                    hideLoading()
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+
+        viewModel.databaseOperation.observe(viewLifecycleOwner) {
+            when (it) {
+                is DatabaseResult.Success -> {
+                    hideLoading()
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                    initUserInterface()
+                }
+                is DatabaseResult.Loading -> showLoading()
+                is DatabaseResult.Error -> {
                     hideLoading()
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                 }
@@ -94,6 +126,16 @@ class CoinDetailFragment :
                         delay(ApplicationConstants.DELAY_INTERVAL_MILLISECONDS)
                     }
                 }
+            }
+        }
+    }
+
+    private fun updateFavoriteIcon() {
+        with(binding!!) {
+            if (sharedViewModel.favoriteCoinList.contains(CoinEntityModel(navArgs.coinId))) {
+                toolbar.favoriteImageButton.setImageResource(R.drawable.ic_star_filled)
+            } else {
+                toolbar.favoriteImageButton.setImageResource(R.drawable.ic_star_non_filled)
             }
         }
     }
