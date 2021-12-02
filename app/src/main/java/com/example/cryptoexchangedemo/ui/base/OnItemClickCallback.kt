@@ -1,6 +1,4 @@
-package com.example.cryptoexchangedemo.ui
-
-import com.example.cryptoexchangedemo.domain.models.CoinModel
+package com.example.cryptoexchangedemo.ui.base
 
 /**
  * Created by Batuhan Duvarci on 27.11.2021.

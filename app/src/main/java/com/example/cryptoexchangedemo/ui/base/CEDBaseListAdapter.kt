@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.example.cryptoexchangedemo.ui.OnItemClickCallback
 
 /**
  * Created by Batuhan Duvarci on 27.11.2021.

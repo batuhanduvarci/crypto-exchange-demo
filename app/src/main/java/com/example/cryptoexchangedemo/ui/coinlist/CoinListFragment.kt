@@ -12,8 +12,8 @@ import com.example.cryptoexchangedemo.constants.ApplicationConstants
 import com.example.cryptoexchangedemo.databinding.FragmentCoinListBinding
 import com.example.cryptoexchangedemo.domain.models.CoinModel
 import com.example.cryptoexchangedemo.network.handler.NetworkResult
-import com.example.cryptoexchangedemo.ui.OnItemClickCallback
 import com.example.cryptoexchangedemo.ui.base.BaseFragment
+import com.example.cryptoexchangedemo.ui.base.OnItemClickCallback
 import com.example.cryptoexchangedemo.ui.components.extensions.hideLoading
 import com.example.cryptoexchangedemo.ui.components.extensions.showLoading
 import com.example.cryptoexchangedemo.ui.util.RecyclerViewItemChangeAnimation

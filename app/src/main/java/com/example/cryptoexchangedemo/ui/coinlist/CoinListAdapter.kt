@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.DiffUtil
 import com.example.cryptoexchangedemo.R
 import com.example.cryptoexchangedemo.databinding.ItemCoinListBinding
 import com.example.cryptoexchangedemo.domain.models.CoinModel
-import com.example.cryptoexchangedemo.ui.OnItemClickCallback
+import com.example.cryptoexchangedemo.ui.base.OnItemClickCallback
 import com.example.cryptoexchangedemo.ui.base.CEDBaseListAdapter
 import com.example.cryptoexchangedemo.ui.util.AnimationEnum
 import com.google.android.material.textview.MaterialTextView
