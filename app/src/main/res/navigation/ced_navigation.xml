@@ -16,7 +16,8 @@
     <fragment android:id="@+id/fragmentFavorites"
         android:name="com.example.cryptoexchangedemo.ui.favorites.FavoritesFragment"
         tools:layout="@layout/fragment_coin_list">
-
+        <action android:id="@+id/toFragmentCoinDetail"
+            app:destination="@id/fragmentCoinDetail"/>
     </fragment>
 
     <fragment android:id="@+id/fragmentCoinDetail"
