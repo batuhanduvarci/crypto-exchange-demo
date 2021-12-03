@@ -40,7 +40,7 @@ class CoinDetailViewModel @Inject constructor(
         try {
             val response = remoteRepository.getCoin(coinId)
             if (response == null) {
-                _coin.postValue(NetworkResult.Error("Error"))
+                _coin.postValue(NetworkResult.Error(resources.getString(R.string.generic_network_error_text)))
             } else {
                 _coin.postValue(NetworkResult.Success(response))
                 getCoinGraph(coinId)
@@ -54,7 +54,7 @@ class CoinDetailViewModel @Inject constructor(
         try {
             val response = remoteRepository.getCoinGraph(coinId)
             if (response.isEmpty()) {
-                _coinGraph.postValue(NetworkResult.Error("Error"))
+                _coinGraph.postValue(NetworkResult.Error(resources.getString(R.string.generic_network_error_text)))
             } else {
                 _coinGraph.postValue(NetworkResult.Success(response))
             }
