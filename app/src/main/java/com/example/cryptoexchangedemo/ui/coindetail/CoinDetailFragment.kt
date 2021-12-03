@@ -106,7 +106,6 @@ class CoinDetailFragment :
                 is DatabaseResult.Success -> {
                     hideLoading()
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
-                    initUserInterface()
                 }
                 is DatabaseResult.Loading -> showLoading()
                 is DatabaseResult.Error -> {
