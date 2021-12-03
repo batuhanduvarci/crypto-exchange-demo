@@ -3,6 +3,7 @@ package com.example.cryptoexchangedemo.di
 import com.example.cryptoexchangedemo.database.FavoritesDao
 import com.example.cryptoexchangedemo.network.CEDService
 import com.example.cryptoexchangedemo.network.mapper.CoinDetailResponseMapper
+import com.example.cryptoexchangedemo.network.mapper.CoinGraphResponseMapper
 import com.example.cryptoexchangedemo.network.mapper.CoinListResponseMapper
 import com.example.cryptoexchangedemo.repository.coinlist.CoinListRemoteRepository
 import com.example.cryptoexchangedemo.repository.coinlist.CoinListRemoteRepositoryImpl
@@ -26,12 +27,14 @@ object RepositoryModule {
     fun coinRemoteRepositoryProvider(
         cedService: CEDService,
         coinListResponseMapper: CoinListResponseMapper,
-        coinDetailResponseMapper: CoinDetailResponseMapper
+        coinDetailResponseMapper: CoinDetailResponseMapper,
+        graphResponseMapper: CoinGraphResponseMapper
     ): CoinListRemoteRepository {
         return CoinListRemoteRepositoryImpl(
             cedService,
             coinListResponseMapper,
-            coinDetailResponseMapper
+            coinDetailResponseMapper,
+            graphResponseMapper
         )
     }
 

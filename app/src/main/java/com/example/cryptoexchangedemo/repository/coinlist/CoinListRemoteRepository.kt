@@ -1,6 +1,7 @@
 package com.example.cryptoexchangedemo.repository.coinlist
 
 import com.example.cryptoexchangedemo.domain.models.CoinDetailModel
+import com.example.cryptoexchangedemo.domain.models.CoinGraphModel
 import com.example.cryptoexchangedemo.domain.models.CoinModel
 
 /**
@@ -11,4 +12,6 @@ interface CoinListRemoteRepository {
     suspend fun getCoinList(): List<CoinModel>
 
     suspend fun getCoin(coinId: String): CoinDetailModel?
+
+    suspend fun getCoinGraph(coinId: String): List<CoinGraphModel>
 }
