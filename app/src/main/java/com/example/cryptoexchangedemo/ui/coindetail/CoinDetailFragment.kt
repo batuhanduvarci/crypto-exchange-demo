@@ -15,16 +15,21 @@ import com.example.cryptoexchangedemo.database.handler.DatabaseResult
 import com.example.cryptoexchangedemo.databinding.FragmentCoinDetailBinding
 import com.example.cryptoexchangedemo.domain.models.CoinDetailModel
 import com.example.cryptoexchangedemo.domain.models.CoinEntityModel
+import com.example.cryptoexchangedemo.domain.models.CoinGraphModel
 import com.example.cryptoexchangedemo.network.handler.NetworkResult
 import com.example.cryptoexchangedemo.ui.SharedViewModel
 import com.example.cryptoexchangedemo.ui.base.BaseFragment
 import com.example.cryptoexchangedemo.ui.components.extensions.hideLoading
 import com.example.cryptoexchangedemo.ui.components.extensions.showLoading
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import java.util.*
 
 /**
  * Created by Batuhan Duvarci on 1.12.2021.
@@ -101,6 +106,20 @@ class CoinDetailFragment :
             }
         }
 
+        viewModel.coinGraph.observe(viewLifecycleOwner) {
+            when (it) {
+                is NetworkResult.Success -> {
+                    it.data?.let { coinGraphData ->
+                        initCoinGraph(coinGraphData)
+                    }
+                }
+                is NetworkResult.Loading -> Unit
+                is NetworkResult.Error -> {
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+
         viewModel.databaseOperation.observe(viewLifecycleOwner) {
             when (it) {
                 is DatabaseResult.Success -> {
@@ -136,6 +155,32 @@ class CoinDetailFragment :
             } else {
                 toolbar.favoriteImageButton.setImageResource(R.drawable.ic_star_non_filled)
             }
+        }
+    }
+
+    private fun initCoinGraph(coinGraphData : List<CoinGraphModel>){
+        val entryList: MutableList<Entry> = mutableListOf()
+        coinGraphData.forEach { coinGraphModel ->
+            coinGraphModel.date?.let { date ->
+                coinGraphModel.value?.let { value ->
+                    entryList.add(Entry(date, value))
+                }
+            }
+        }
+        val lineDataSet = LineDataSet(entryList, "")
+        lineDataSet.mode = LineDataSet.Mode.CUBIC_BEZIER
+        lineDataSet.lineWidth = 3f
+        lineDataSet.fillColor = resources.getColor(R.color.ced_red)
+        lineDataSet.setDrawCircles(false)
+        lineDataSet.setDrawFilled(true)
+        lineDataSet.color = resources.getColor(R.color.ced_red)
+
+        with(binding!!){
+            mpLineChart.data = LineData(lineDataSet)
+            mpLineChart.description.isEnabled = false
+            mpLineChart.legend.isEnabled = false
+            mpLineChart.xAxis.setDrawLabels(false)
+            mpLineChart.invalidate()
         }
     }
 }
