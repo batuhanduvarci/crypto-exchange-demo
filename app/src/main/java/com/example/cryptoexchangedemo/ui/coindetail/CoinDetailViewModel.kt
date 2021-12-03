@@ -1,8 +1,10 @@
 package com.example.cryptoexchangedemo.ui.coindetail
 
+import android.content.res.Resources
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.cryptoexchangedemo.R
 import com.example.cryptoexchangedemo.database.handler.DatabaseResult
 import com.example.cryptoexchangedemo.domain.models.CoinDetailModel
 import com.example.cryptoexchangedemo.network.handler.NetworkResult
@@ -19,7 +21,8 @@ import javax.inject.Inject
 @HiltViewModel
 class CoinDetailViewModel @Inject constructor(
     private val remoteRepository: CoinListRemoteRepository,
-    private val localRepository: CoinListLocaleRepository
+    private val localRepository: CoinListLocaleRepository,
+    private val resources: Resources
 ) :
     ViewModel() {
 
@@ -45,18 +48,18 @@ class CoinDetailViewModel @Inject constructor(
     fun addToFavorites(coinId: String) = viewModelScope.launch(Dispatchers.IO) {
         try {
             localRepository.insertCoinId(coinId)
-            _databaseOperation.postValue(DatabaseResult.Success("The coin is added to favorites successfully"))
+            _databaseOperation.postValue(DatabaseResult.Success(resources.getString(R.string.fragment_coin_details_add_to_favorites_success_text)))
         } catch (ex: Exception) {
-            _databaseOperation.postValue(DatabaseResult.Error("An error occurred while adding the coin to favorites!"))
+            _databaseOperation.postValue(DatabaseResult.Error(resources.getString(R.string.fragment_coin_details_add_to_favorites_error_text)))
         }
     }
 
     fun removeFromFavorites(coinId: String) = viewModelScope.launch(Dispatchers.IO) {
         try {
             localRepository.removeCoinId(coinId)
-            _databaseOperation.postValue(DatabaseResult.Success("The coin is removed from favorites successfully"))
+            _databaseOperation.postValue(DatabaseResult.Success(resources.getString(R.string.fragment_coin_details_remove_from_favorites_success_text)))
         } catch (ex: Exception) {
-            _databaseOperation.postValue(DatabaseResult.Error("An error occurred while removing the coin from favorites!"))
+            _databaseOperation.postValue(DatabaseResult.Error(resources.getString(R.string.fragment_coin_details_remove_from_favorites_error_text)))
         }
     }
 }

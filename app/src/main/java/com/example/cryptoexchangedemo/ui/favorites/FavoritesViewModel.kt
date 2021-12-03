@@ -1,7 +1,9 @@
 package com.example.cryptoexchangedemo.ui.favorites
 
+import android.content.res.Resources
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.cryptoexchangedemo.R
 import com.example.cryptoexchangedemo.domain.models.CoinEntityModel
 import com.example.cryptoexchangedemo.domain.models.CoinModel
 import com.example.cryptoexchangedemo.network.handler.NetworkResult
@@ -14,7 +16,8 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class FavoritesViewModel @Inject constructor(
-    private val remoteRepository: CoinListRemoteRepository
+    private val remoteRepository: CoinListRemoteRepository,
+    private val resources: Resources
 ) : ViewModel() {
 
     var firstSelectable: Int = 0
@@ -27,7 +30,7 @@ class FavoritesViewModel @Inject constructor(
         try {
             val response = remoteRepository.getCoinList()
             if (response.isEmpty()){
-                _coinList.postValue(NetworkResult.Error("Error"))
+                _coinList.postValue(NetworkResult.Error(resources.getString(R.string.generic_network_error_text)))
             }else{
                 _coinList.postValue(NetworkResult.Success(mapFromFavoriteListToCoinList(response, favoriteList)))
             }
